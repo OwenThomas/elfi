@@ -444,7 +444,7 @@ class RandMaxVar(MaxVar):
         """
         super(RandMaxVar, self).__init__(quantile_eps, *args, **opts)
         self.name = 'rand_max_var'
-        self._n_nuts_samples = 50
+        self._n_nuts_samples = 150
         self._limit_faulty_init = 10
 
     def acquire(self, n, t=None):
@@ -506,6 +506,7 @@ class RandMaxVar(MaxVar):
                                 theta_init,
                                 _evaluate_logpdf,
                                 _evaluate_gradient_logpdf,
+                                max_depth=0,
                                 seed=self.seed)
 
             # Using the last n points of the NUTS chain for the acquisition batch.
